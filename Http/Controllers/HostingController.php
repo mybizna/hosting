@@ -127,7 +127,7 @@ class HostingController extends Controller
         $domainId = $request->input('domain_id');
         $domain = Domain::find($domainId);
 
-        if (auth()->user()->isSuperAdmin() || $current_user->id == $domain->user_id) {
+        if (auth()->user()->isSuperAdmin() || $current_user->id == $domain->partner_id) {
             $ssoToken = $whmcs->createSsoToken($domain);
             Session::flash('success', 'Autologin is Successfully');
             return Redirect::away($ssoToken['redirect_url']);
@@ -156,7 +156,7 @@ class HostingController extends Controller
             $domain = parse_url($domainStr, PHP_URL_HOST);
             $domains = $whmcs->getUserDomains($current_user->email);
             $domainCount = Domain::where('name', $domainStr)
-                ->where('user_id', $current_user->id)
+                ->where('partner_id', $current_user->id)
                 ->count();
 
             if ($domainCount || in_array($domain, $domains)) {

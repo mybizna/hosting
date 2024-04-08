@@ -13,7 +13,7 @@ class Hosting extends BaseModel
      *
      * @var array<string>
      */
-    protected $fillable = ['id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'domain_id', 'package_id', 'payment_id', 'server_id', 'user_id', 'whmcs_order_id', 'is_in_whmcs'];
+    protected $fillable = ['id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'domain_id', 'package_id', 'payment_id', 'server_id', 'partner_id', 'whmcs_order_id', 'is_in_whmcs'];
 
     /**
      * The fields that are to be render when performing relationship queries.
@@ -81,15 +81,15 @@ class Hosting extends BaseModel
      */
     public function structure($structure): array
     {
-        $structure['table'] = ['domain_id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'package_id', 'payment_id', 'server_id', 'user_id', 'whmcs_order_id', 'is_in_whmcs'];
+        $structure['table'] = ['domain_id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'package_id', 'payment_id', 'server_id', 'partner_id', 'whmcs_order_id', 'is_in_whmcs'];
         $structure['form'] = [
-            ['label' => 'Hosting Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['domain_id', 'amount', 'http_code',  'package_id', 'payment_id', 'server_id', 'user_id','whmcs_order_id',]],
+            ['label' => 'Hosting Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['domain_id', 'amount', 'http_code',  'package_id', 'payment_id', 'server_id', 'partner_id','whmcs_order_id',]],
             ['label' => 'Hosting Status', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update','is_cpaneled',  'is_registered', ]],
             ['label' => 'Hosting Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'is_installed', 'is_removed', 'is_live', 'is_synced', 'has_error','is_in_whmcs']],
             ['label' => 'Hosting Date', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['expiry_date', 'upgrade_date', 'last_upgrade_date','call_counter',]],
             ['label' => 'Hosting Log', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'log',  ]],
         ];
-        $structure['filter'] = ['domain_id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'package_id', 'payment_id', 'server_id', 'user_id', 'whmcs_order_id', 'is_in_whmcs'];
+        $structure['filter'] = ['domain_id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'package_id', 'payment_id', 'server_id', 'partner_id', 'whmcs_order_id', 'is_in_whmcs'];
         
         return $structure;
     }

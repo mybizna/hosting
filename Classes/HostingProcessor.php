@@ -26,7 +26,7 @@ class HostingProcessor
         $domainProcessor = new DomainProcessor();
 
         $packageId = $request->input('package_id') ?: $request->input('package_id');
-        $userId = $request->input('user_id') ?: $request->input('user_id');
+        $userId = $request->input('partner_id') ?: $request->input('partner_id');
 
         $user = User::findOrFail($userId);
 
@@ -41,7 +41,7 @@ class HostingProcessor
 
         $hosting = new Hosting([
             'domain_id' => $domain->id,
-            'user_id' => $user->id,
+            'partner_id' => $user->id,
             'package_id' => $package->id,
             'amount' => $package->price,
         ]);
@@ -56,7 +56,7 @@ class HostingProcessor
         $paymentProcessor = new PaymentProcessor();
 
         $paymentDict = [
-            "user_id" => $hosting->user_id,
+            "partner_id" => $hosting->partner_id,
             "app_name" => 'hosting',
             "model_name" => 'Hosting',
             "next_to" => $nextTo,
@@ -125,7 +125,7 @@ class HostingProcessor
         }
 
         $paymentDict = [
-            "user_id" => $hosting->user_id,
+            "partner_id" => $hosting->partner_id,
             "app_name" => 'hosting',
             "model_name" => 'Hosting',
             "next_to" => $nextTo,

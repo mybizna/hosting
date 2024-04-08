@@ -10,7 +10,7 @@ class Whmcs
 {
     public function createCustomer($user)
     {
-        $tracker = Tracker::where('user_id', $user->id)->first();
+        $tracker = Tracker::where('partner_id', $user->id)->first();
         $clients = $this->searchClients($user->email);
 
         if (intval($clients['totalresults']) === 0) {
@@ -71,7 +71,7 @@ class Whmcs
 
     public function updateCustomer($user)
     {
-        $tracker = Tracker::where('user_id', $user->id)->first();
+        $tracker = Tracker::where('partner_id', $user->id)->first();
 
         $clientArr = [
             'action' => 'UpdateClient',
