@@ -78,4 +78,15 @@ class Server extends BaseModel
         $structure['filter'] = ['title', 'published', 'is_full', 'total_accounts', 'limiting', 'ip_address'];
         return $structure;
     }
+
+
+    /**
+     * Define rights for this model.
+     *
+     * @return array
+     */
+    public function rights(): array
+    {
+
+    }
 }
