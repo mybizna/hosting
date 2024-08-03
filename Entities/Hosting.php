@@ -16,20 +16,6 @@ class Hosting extends BaseModel
     protected $fillable = ['id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'domain_id', 'package_id', 'payment_id', 'server_id', 'partner_id', 'whmcs_order_id', 'is_in_whmcs'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['domain_id__name'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -76,38 +62,9 @@ class Hosting extends BaseModel
         $this->fields->boolean('is_in_whmcs')->nullable()->html('switch')->default(false);
 
     }
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['domain_id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'package_id', 'payment_id', 'server_id', 'partner_id', 'whmcs_order_id', 'is_in_whmcs'];
-        $structure['form'] = [
-            ['label' => 'Hosting Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['domain_id', 'amount', 'http_code',  'package_id', 'payment_id', 'server_id', 'partner_id','whmcs_order_id',]],
-            ['label' => 'Hosting Status', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update','is_cpaneled',  'is_registered', ]],
-            ['label' => 'Hosting Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'is_installed', 'is_removed', 'is_live', 'is_synced', 'has_error','is_in_whmcs']],
-            ['label' => 'Hosting Date', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['expiry_date', 'upgrade_date', 'last_upgrade_date','call_counter',]],
-            ['label' => 'Hosting Log', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'log',  ]],
-        ];
-        $structure['filter'] = ['domain_id', 'amount', 'http_code', 'expiry_date', 'upgrade_date', 'last_upgrade_date', 'log', 'paid', 'completed', 'successful', 'status', 'is_new', 'is_update', 'is_registered', 'is_cpaneled', 'is_installed', 'is_removed', 'is_live', 'is_synced', 'call_counter', 'has_error', 'package_id', 'payment_id', 'server_id', 'partner_id', 'whmcs_order_id', 'is_in_whmcs'];
-        
-        return $structure;
-    }
+
+    
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = ['view' => true];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
+ 
 }

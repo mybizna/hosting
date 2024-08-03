@@ -16,20 +16,6 @@ class Server extends BaseModel
     protected $fillable = ['id', 'title', 'domain', 'username', 'password', 'auth_type', 'total_accounts', 'limiting', 'is_full', 'nameserver_1', 'nameserver_2', 'nameserver_3', 'nameserver_4', 'published', 'ip_address'];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['title'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -64,35 +50,7 @@ class Server extends BaseModel
 
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['title', 'published', 'is_full', 'total_accounts', 'limiting', 'ip_address'];
-        $structure['form'] = [
-            ['label' => 'Server Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['title', 'published', 'is_full', 'total_accounts', 'limiting', 'ip_address']],
-            ['label' => 'Server Logging Details', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['domain', 'username', 'password', 'auth_type',]],
-            ['label' => 'Server Nameserver', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'nameserver_1', 'nameserver_2', 'nameserver_3', 'nameserver_4']],
-        ];
-        $structure['filter'] = ['title', 'published', 'is_full', 'total_accounts', 'limiting', 'ip_address'];
-        return $structure;
-    }
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
 
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
 }

@@ -16,20 +16,6 @@ class Package extends BaseModel
     protected $fillable = [ 'id', 'title', 'unique_name', 'description', 'plan', 'price', 'setup_fee', 'no_of_days', 'is_default', 'published', ];
 
     /**
-     * The fields that are to be render when performing relationship queries.
-     *
-     * @var array<string>
-     */
-    public $rec_names = ['title'];
-
-    /**
-     * List of tables names that are need in this model during migration.
-     *
-     * @var array<string>
-     */
-    public array $migrationDependancy = [];
-
-    /**
      * The table associated with the model.
      *
      * @var string
@@ -59,35 +45,7 @@ class Package extends BaseModel
 
     }
 
-    /**
-     * List of structure for this model.
-     */
-    public function structure($structure): array
-    {
-        $structure['table'] = ['title', 'published', 'is_default', 'price', 'no_of_days','is_default','published'];
-        $structure['form'] = [
-            ['label' => 'Package Detail', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => ['title', 'unique_name', 'plan', 'price', 'setup_fee', 'no_of_days', 'is_default', 'published']],
-            ['label' => 'Package Setting', 'class' => 'col-span-full md:col-span-6 md:pr-2', 'fields' => [ 'description']],
-        ];
-        $structure['filter'] = ['title', 'published', 'is_default', 'price', 'no_of_days','is_default','published'];
-        
-        return $structure;
-    }
+ 
 
 
-    /**
-     * Define rights for this model.
-     *
-     * @return array
-     */
-    public function rights(): array
-    {
-        $rights = parent::rights();
-
-        $rights['staff'] = ['view' => true];
-        $rights['registered'] = [];
-        $rights['guest'] = [];
-
-        return $rights;
-    }
 }
