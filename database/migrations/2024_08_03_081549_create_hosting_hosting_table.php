@@ -34,10 +34,10 @@ return new class extends Migration
             $table->boolean('is_synced')->nullable()->default(false);
             $table->integer('call_counter')->nullable();
             $table->boolean('has_error')->nullable()->default(false);
-            $table->bigInteger('domain_id')->nullable();
-            $table->bigInteger('package_id')->nullable();
-            $table->bigInteger('payment_id')->nullable();
-            $table->bigInteger('server_id')->nullable();
+            $table->foreignId('domain_id')->nullable();
+            $table->foreignId('package_id')->nullable();
+            $table->foreignId('payment_id')->nullable();
+            $table->foreignId('server_id')->nullable();
             $table->integer('partner_id')->nullable();
             $table->integer('whmcs_order_id')->nullable();
             $table->boolean('is_in_whmcs')->nullable()->default(false);
