@@ -1,23 +1,18 @@
-<?php 
-
+<?php
 
 namespace Modules\Hosting\Classes;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Modules\Hosting\Entities\Hosting;
-use Modules\Hosting\Entities\Package;
-use Modules\Domain\Entities\Domain;
-use Modules\Affiliate\Entities\Affiliate;
-use Modules\Affiliate\Entities\Package as AffiliatePackage;
-use Modules\Account\Entities\Source;
-use App\Models\User;
-use App\Classes\Whmcs;
-use App\Classes\Mailer;
-use App\Classes\UpgradeAccount;
-use App\Classes\PaymentProcessor;
 use App\Classes\DomainProcessor;
+use App\Classes\Mailer;
+use App\Classes\PaymentProcessor;
+use App\Classes\Whmcs;
+use App\Models\User;
 use DynamicPreferences;
+use Illuminate\Support\Carbon;
+use Modules\Affiliate\Models\Package as AffiliatePackage;
+use Modules\Domain\Models\Domain;
+use Modules\Hosting\Models\Hosting;
+use Modules\Hosting\Models\Package;
 
 class HostingProcessor
 {
@@ -249,7 +244,7 @@ class HostingProcessor
             } else {
                 $hostings = Hosting::where([
                     ['paid', '=', false],
-                    ['is_registered', '=', false]
+                    ['is_registered', '=', false],
                 ])->take(100)->get();
             }
 
@@ -320,7 +315,7 @@ class HostingProcessor
 
         return Hosting::where([
             ['paid', '=', false],
-            ['expiry_date', '>', $today]
+            ['expiry_date', '>', $today],
         ])->take(100)->get();
     }
 
@@ -330,7 +325,7 @@ class HostingProcessor
 
         return Hosting::where([
             ['paid', '=', true],
-            ['expiry_date', '<', $today]
+            ['expiry_date', '<', $today],
         ])->take(100)->get();
     }
 }
