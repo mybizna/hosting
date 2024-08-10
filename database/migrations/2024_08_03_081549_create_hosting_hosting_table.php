@@ -34,11 +34,11 @@ return new class extends Migration
             $table->boolean('is_synced')->nullable()->default(false);
             $table->integer('call_counter')->nullable();
             $table->boolean('has_error')->nullable()->default(false);
-            $table->foreignId('domain_id')->constrained('domain_domain')->onDelete('cascade')->nullable()->index('domain_id');
-            $table->foreignId('package_id')->constrained('hosting_package')->onDelete('cascade')->nullable()->index('package_id');
-            $table->foreignId('payment_id')->constrained('account_payment')->onDelete('cascade')->nullable()->index('payment_id');
-            $table->foreignId('server_id')->constrained('hosting_server')->onDelete('cascade')->nullable()->index('server_id');
-            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('partner_id');
+            $table->foreignId('domain_id')->constrained('domain_domain')->onDelete('cascade')->nullable()->index('hosting_hosting_domain_id');
+            $table->foreignId('package_id')->constrained('hosting_package')->onDelete('cascade')->nullable()->index('hosting_hosting_package_id');
+            $table->foreignId('payment_id')->constrained('account_payment')->onDelete('cascade')->nullable()->index('hosting_hosting_payment_id');
+            $table->foreignId('server_id')->constrained('hosting_server')->onDelete('cascade')->nullable()->index('hosting_hosting_server_id');
+            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('hosting_hosting_partner_id');
             $table->integer('whmcs_order_id')->nullable();
             $table->boolean('is_in_whmcs')->nullable()->default(false);
 
