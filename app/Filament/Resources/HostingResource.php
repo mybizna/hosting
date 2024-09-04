@@ -2,9 +2,6 @@
 
 namespace Modules\Hosting\Filament\Resources;
 
-use Modules\Hosting\Filament\Resources\HostingResource\Pages;
-use Modules\Hosting\Filament\Resources\HostingResource\RelationManagers;
-use Modules\Hosting\Models\Hosting;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,10 +9,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Hosting\Filament\Resources\HostingResource\Pages;
+use Modules\Hosting\Models\Hosting;
 
 class HostingResource extends Resource
 {
     protected static ?string $model = Hosting::class;
+
+    protected static ?string $slug = 'hosting/hosting';
+
+    protected static ?string $navigationGroup = 'Hosting';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
