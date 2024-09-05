@@ -2,7 +2,10 @@
 
 namespace Modules\Hosting\Models;
 
+use Modules\Account\Models\Payment;
 use Modules\Base\Models\BaseModel;
+use Modules\Hosting\Models\Domain;
+use Modules\Hosting\Models\Package;
 
 class Hosting extends BaseModel
 {
@@ -20,5 +23,32 @@ class Hosting extends BaseModel
      * @var string
      */
     protected $table = "hosting_hosting";
+
+    /**
+     * Add relationship to Domain
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function domain()
+    {
+        return $this->belongsTo(Domain::class);
+    }
+
+    /**
+     * Add relationship to Package
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    /**
+     * Add relationship to Payment
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
 
 }
