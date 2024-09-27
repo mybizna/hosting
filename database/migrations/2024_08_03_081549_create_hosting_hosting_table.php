@@ -34,15 +34,20 @@ return new class extends Migration
             $table->boolean('is_synced')->nullable()->default(false);
             $table->integer('call_counter')->nullable();
             $table->boolean('has_error')->nullable()->default(false);
-            $table->foreignId('domain_id')->constrained('domain_domain')->onDelete('cascade')->nullable()->index('hosting_hosting_domain_id');
-            $table->foreignId('package_id')->constrained('hosting_package')->onDelete('cascade')->nullable()->index('hosting_hosting_package_id');
-            $table->foreignId('payment_id')->constrained('account_payment')->onDelete('cascade')->nullable()->index('hosting_hosting_payment_id');
-            $table->foreignId('server_id')->constrained('hosting_server')->onDelete('cascade')->nullable()->index('hosting_hosting_server_id');
-            $table->foreignId('partner_id')->constrained('partner_partner')->onDelete('cascade')->nullable()->index('hosting_hosting_partner_id');
+            $table->foreignId('domain_id')->nullable()->constrained('domain_domain')->onDelete('set null');
+            $table->foreignId('package_id')->nullable()->constrained('hosting_package')->onDelete('set null');
+            $table->foreignId('payment_id')->nullable()->constrained('account_payment')->onDelete('set null');
+            $table->foreignId('server_id')->nullable()->constrained('hosting_server')->onDelete('set null');
+            $table->foreignId('partner_id')->nullable()->constrained('partner_partner')->onDelete('set null');
             $table->integer('whmcs_order_id')->nullable();
             $table->boolean('is_in_whmcs')->nullable()->default(false);
 
+            $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('set null');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
