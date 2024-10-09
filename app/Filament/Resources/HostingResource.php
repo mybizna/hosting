@@ -4,15 +4,12 @@ namespace Modules\Hosting\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Hosting\Filament\Resources\HostingResource\Pages;
+use Modules\Base\Filament\Resources\BaseResource;
 use Modules\Hosting\Models\Hosting;
 
-class HostingResource extends Resource
+class HostingResource extends BaseResource
 {
     protected static ?string $model = Hosting::class;
 
@@ -170,27 +167,4 @@ class HostingResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListHostings::route('/'),
-            'create' => Pages\CreateHosting::route('/create'),
-            'edit' => Pages\EditHosting::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
-    }
 }
