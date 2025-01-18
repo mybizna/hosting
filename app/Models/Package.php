@@ -1,13 +1,21 @@
 <?php
-
 namespace Modules\Hosting\Models;
 
-use Modules\Base\Models\BaseModel;
+use Base\Casts\Money;
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Base\Models\BaseModel;
 
 class Package extends BaseModel
 {
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'total' => Money::class, // Use the custom MoneyCast
+    ];
     /**
      * The fields that can be filled
      *
@@ -24,14 +32,14 @@ class Package extends BaseModel
 
     public function migration(Blueprint $table): void
     {
-        $table->id();
 
         $table->string('title');
         $table->longText('unique_name');
         $table->longText('description')->nullable();
         $table->string('plan')->nullable();
-        $table->decimal('price', 11)->nullable();
-        $table->decimal('setup_fee', 11)->nullable();
+        $table->integer('price')->nullable();
+        $table->integer('setup_fee')->nullable();
+        $table->string('currency')->default('USD');
         $table->integer('no_of_days')->nullable();
         $table->boolean('is_default')->nullable()->default(false);
         $table->boolean('published')->nullable()->default(false);
