@@ -85,13 +85,23 @@ class Hosting extends BaseModel
         $table->boolean('is_synced')->nullable()->default(false);
         $table->integer('call_counter')->nullable();
         $table->boolean('has_error')->nullable()->default(false);
-        $table->foreignId('domain_id')->nullable()->constrained(table: 'domain_domain')->onDelete('set null');
-        $table->foreignId('package_id')->nullable()->constrained(table: 'hosting_package')->onDelete('set null');
-        $table->foreignId('payment_id')->nullable()->constrained(table: 'account_payment')->onDelete('set null');
-        $table->foreignId('server_id')->nullable()->constrained(table: 'hosting_server')->onDelete('set null');
-        $table->foreignId('partner_id')->nullable()->constrained(table: 'partner_partner')->onDelete('set null');
+        $table->unsignedBigInteger('domain_id')->nullable();
+        $table->boolean('package_id')->nullable()->default(false);
+        $table->boolean('payment_id')->nullable()->default(false);
+        $table->boolean('server_id')->nullable()->default(false);
+        $table->boolean('partner_id')->nullable()->default(false);
+
         $table->integer('whmcs_order_id')->nullable();
         $table->boolean('is_in_whmcs')->nullable()->default(false);
+    }
+
+    public function post_migration(Blueprint $table): void
+    {
+        $table->foreign('domain_id')->references('id')->on('domain_domain')->onDelete('set null');
+        $table->foreign('package_id')->references('id')->on('hosting_package')->onDelete('set null');
+        $table->foreign('payment_id')->references('id')->on('account_payment')->onDelete('set null');
+        $table->foreign('server_id')->references('id')->on('hosting_server')->onDelete('set null');
+        $table->foreign('partner_id')->references('id')->on('partner_partner')->onDelete('set null');
     }
 
 }
