@@ -86,10 +86,10 @@ class Hosting extends BaseModel
         $table->integer('call_counter')->nullable();
         $table->boolean('has_error')->nullable()->default(false);
         $table->unsignedBigInteger('domain_id')->nullable();
-        $table->boolean('package_id')->nullable()->default(false);
-        $table->boolean('payment_id')->nullable()->default(false);
-        $table->boolean('server_id')->nullable()->default(false);
-        $table->boolean('partner_id')->nullable()->default(false);
+        $table->unsignedBigInteger('package_id')->nullable()->default(false);
+        $table->unsignedBigInteger('payment_id')->nullable()->default(false);
+        $table->unsignedBigInteger('server_id')->nullable()->default(false);
+        $table->unsignedBigInteger('partner_id')->nullable()->default(false);
 
         $table->integer('whmcs_order_id')->nullable();
         $table->boolean('is_in_whmcs')->nullable()->default(false);
