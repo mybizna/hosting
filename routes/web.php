@@ -1,18 +1,24 @@
 <?php
 // Replace 'HostingController' with your actual controller name
 
+use Illuminate\Support\Facades\Route;
+use Modules\Hosting\Http\Controllers\HostingController;
+
+// Ensure the HostingController class exists and is correctly namespaced
+// If the class does not exist, create it in the specified namespace
+
 // Routes for Views
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/hosting', 'HostingController@index');
-    Route::post('/hosting/remove_duplicates', 'HostingController@removeDuplicates');
-    Route::get('/hosting/gifwalletapi', 'HostingController@gifwalletapi');
-    Route::get('/hosting/verifykey', 'HostingController@verifykey');
-    Route::get('/hosting/createssotoken', 'HostingController@createssotoken');
-    Route::get('/hosting/accesspass', 'HostingController@accesspass');
-    Route::get('/hosting/whmcsorders', 'HostingController@whmcsorders');
-    Route::get('/hosting/completewhmcsorders', 'HostingController@completewhmcsorders');
-    Route::get('/hosting/purchasewhmcsorders', 'HostingController@purchasewhmcsorders');
-    Route::get('/hosting/user_hosting_renew', 'HostingController@userHostingRenew');
-    Route::get('/hosting/user_hosting_payment', 'HostingController@userHostingPayment');
+    Route::get('/hosting',[HostingController::class, 'index']);
+    Route::post('/hosting/remove_duplicates',[HostingController::class, 'removeDuplicates'] );
+    Route::get('/hosting/gifwalletapi',[HostingController::class, 'gifwalletapi'] );
+    Route::get('/hosting/verifykey',[HostingController::class, 'verifykey'] );
+    Route::get('/hosting/createssotoken', [HostingController::class, 'createssotoken']);
+    Route::get('/hosting/accesspass', [HostingController::class, 'accesspass']);
+    Route::get('/hosting/whmcsorders', [HostingController::class, 'whmcsorders']);
+    Route::get('/hosting/completewhmcsorders', [HostingController::class, 'completewhmcsorders']);
+    Route::get('/hosting/purchasewhmcsorders',[HostingController::class, 'purchasewhmcsorders'] );
+    Route::get('/hosting/user_hosting_renew',[HostingController::class, 'userHostingRenew'] );
+    Route::get('/hosting/user_hosting_payment', [HostingController::class, 'userHostingPayment']);
 
 });

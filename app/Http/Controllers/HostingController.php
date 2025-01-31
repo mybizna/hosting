@@ -1,4 +1,7 @@
 <?php
+namespace Modules\Hosting\Http\Controllers;
+
+
 use Modules\Domain\Classes\DomainProcessor;
 use Modules\Hosting\Classes\HostingProcessor;
 use Modules\Hosting\Classes\Whmcs;
@@ -13,8 +16,9 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use Modules\Base\Http\Controllers\BaseController;
 
-class HostingController extends Controller
+class HostingController extends BaseController
 {
     public function index(Request $request)
     {
